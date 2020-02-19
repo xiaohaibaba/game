@@ -1,0 +1,360 @@
+body
+{
+	background-color: #E8E8E8;
+}
+.main
+{
+	margin:0 auto;
+	width: 700px;
+	height: 700px;
+}
+.playing
+{
+	margin:0 auto;
+	width: 1080px;
+	height: 100%;
+}
+.picbox
+	/* 输入框样式 */
+	input{
+	    outline-style: none ;
+	    border: 1px solid #000; 
+	    border-radius: 3px;
+	    padding: 5px 5px;
+		width: 450px;
+	    font-size: 24px;
+	    font-family: "Microsoft soft";
+	}
+	.title{
+	    outline-style: none ;
+	    padding: 60px 14px;
+	    font-size: 30px;
+	    font-family: "Microsoft soft";
+		text-align: center;
+	}
+	.playerTitle{
+	    padding: 50px 5px 5px 5px;
+	    font-size: 24px;
+	    font-family: "Microsoft soft";
+	}
+	/* 头像样式 */
+	.square_first {
+		border-radius: 3px;
+		margin-left: 5px;
+		width: 56px;
+		height: 56px;
+		padding: 1px 1px;
+		display: inline-block;
+		border:1px solid #000;
+	}
+	.square_second {
+		border-radius: 3px;
+		margin-left: 5px;
+		width: 55px;
+		height: 55px;
+		padding: 1px 1px;
+		display: inline-block;
+		border:1px solid #000;
+	}
+	/* 选中后头像后边框颜色 */
+	.avatar.bgColor{
+		border:2px solid #FF3030;
+	}
+	/* 图片样式 */
+	img{
+		width: 55px;
+		height: 55px;
+	}
+	.next_button{
+		margin:120px auto;
+		width:200px;
+	}
+	
+	.next{
+		width: 200px;/*设置按钮宽度*/
+		height: 30px;/*设置按钮高度*/
+		color:white;/*字体颜色*/
+		background-color:cornflowerblue;/*按钮背景颜色*/
+		border-radius: 3px;/*让按钮变得圆滑一点*/
+		border-width: 0;/*消去按钮丑的边框*/
+		margin: 0;
+		outline: none;/*取消轮廓*/
+		font-family: Microsoft soft;/*字体设置为楷体*/
+		font-size: 17px;/*设置字体大小*/
+		text-align: center;/*字体居中*/
+		cursor: pointer;/*设置鼠标箭头手势*/
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.next:hover{/*鼠标移动时的颜色变化*/
+		background-color: #64baed;
+	}
+	#playing{
+		display: none;
+	}
+	#second{
+		display: none;
+	}
+	
+	.wingame {
+		display: none;
+		width: 550px;
+		height: 150px;
+		background-color: #afdc6a;
+		position: fixed;
+		top:25vh;
+		left: 32vw;
+	}
+	.wingame h2{
+		text-align: center;
+	}
+	.wingame .continue_submit{
+		width: 100px;/*设置按钮宽度*/
+		height: 40px;/*设置按钮高度*/
+		color:white;/*字体颜色*/
+		background-color:cornflowerblue;/*按钮背景颜色*/
+		border-radius: 3px;/*让按钮变得圆滑一点*/
+		border-width: 0;/*消去按钮丑的边框*/
+		outline: none;/*取消轮廓*/
+		font-family: Microsoft soft;/*字体设置为楷体*/
+		font-size: 17px;/*设置字体大小*/
+		text-align: center;/*字体居中*/
+		cursor: pointer;/*设置鼠标箭头手势*/
+		padding: 5px;
+		margin:20px 60px 10px 420px;
+	}
+	.wingame .continue_submit:hover{
+		background:#64baed;
+	}
+	.errormsg {
+		display: none;
+		width: 500px;
+		height: 80px;
+		background-color: rgba(255, 0, 0, 127);
+		position: fixed;
+		top:25vh;
+		left: 32vw;
+	}
+	
+	.errormsg h2{
+		text-align: center;
+	}
+	
+	.successmsg{
+		display: none;
+		width: 500px;
+		height: 80px;
+		background-color: rgba(170, 255, 0, 127);
+		position: fixed;
+		top:25vh;
+		left: 32vw;
+	}
+	
+	.successmsg h2{
+		text-align: center;
+	}
+	
+	.btn.submit{ 
+	    width:70px;
+	    height:30px;
+	    color:#fff; 
+	    text-align: center; 
+	    background-color:#000; 
+	    color:#fff;
+	    line-height: 28px;
+	    border-radius:15px; 
+	    border:0; 
+	    outline: 0; 
+	    transition: background 0.2s;
+		cursor: pointer;/*设置鼠标箭头手势*/
+	}
+	
+	.btn{
+	    color:#fff; 
+	    text-align: center;
+	    color:#000;
+	    line-height: 28px;
+	    border-radius:15px; 
+	    border:0; 
+	    outline: 0; 
+	    transition: background 0.2s;
+		cursor: pointer;/*设置鼠标箭头手势*/
+	}
+	
+	.btn.submit:hover{         
+	    background:#666
+	}
+	
+	.btn:hover{
+		background:#eaeaea;
+	}
+	
+	.playing .main{
+		margin:5px auto;
+		width: 1080px;
+		height: 60px;
+		align-items:center;
+		display: flex;
+	}
+	.playing .main .player .exit{
+		height: 50px;
+		width: 65px;
+		border: 2px solid #000;
+		color: #000;
+		-webkit-border-radius: 50%;
+		text-align: center;
+		margin: 5px;
+		font-size: 14px;
+		outline:none;
+		cursor: pointer;/*设置鼠标箭头手势*/
+	}
+	.playing .main .player .exit:hover{         
+	    background:#eaeaea
+	}
+	.playing .main .player .name{
+		 padding:5px;
+		 width:100%;
+		 height: 50px;
+		 line-height:40px;
+		 text-align: left;
+	}
+	
+	.playing .main .player .avatar{
+		height: 50px;
+		margin: 5px;
+		text-align: center;
+	}
+	
+	.player {
+		display:flex;
+		align-items:center;
+		width:450px;
+		height:60px;
+		margin: 0 5px;
+	}
+	
+	.score {
+		display:flex;
+		align-items:center;
+		width:180px;
+		height:60px;
+		margin: 0 5px;
+		border: 2px solid #000000;
+	}
+	
+	.playing .main .score .lab{
+		padding:5px;
+		width:80px;
+		height: 50px;
+		line-height:40px;
+		text-align: center;
+		font-size: 30px;
+	}
+	.playing .main .score .flag{
+		padding:5px;
+		width:10px;
+		height: 50px;
+		line-height:40px;
+		text-align: center;
+		font-size: 30px;
+	}
+	
+	.cards {
+		display:flex;
+		width:1070px;
+		height:100px;
+		margin: 0px 5px;
+		margin-top: 80px;
+	}
+	
+	.cards .card{
+		padding:5px;
+		width:350px;
+		height: 100px;
+		display:flex;
+		align-items: center;
+	}
+	
+	.cards .card .cardnum{
+		width: 90px;
+		height: 90px;
+		line-height: 90px;
+		border: 2px solid #000;
+		margin: 0px auto;
+		font-size: 40px;
+		text-align: center;
+	}
+	
+	.cards .card .cardnum.bgColor{
+		background-color: #acacac;
+	}
+	
+	.expressions {
+		display:flex;
+		align-items:center;
+		width:1070px;
+		height:100px;
+		margin: 0px 5px;
+		margin-top: 80px;
+	}
+	
+	.expressions .expression{
+		padding: 10px;
+		height: 120px;
+		line-height:40px;
+		text-align: center;
+		font-size: 30px;
+		display:flex;
+		align-items:center;
+	}
+	
+	.expressions .expression .numbers{
+		height: 90px;
+		width: 80%;
+		display: flex;
+		align-items: center;
+	}
+	
+	.expressions .expression .numbers .number {
+		width: 44px;
+		height: 44px;
+		text-align: center;
+		font-size: 40px;
+		margin: 10px;
+		align-items: center;
+		border: 2px solid #000;
+	}
+	
+	.calculates {
+		display:flex;
+		align-items:center;
+		width:1070px;
+		height:100px;
+		margin: 0px 5px;
+		margin-top: 80px;
+	}
+	
+	.calculates .calculate{
+		padding: 10px;
+		height: 120px;
+		line-height:40px;
+		text-align: center;
+		display:flex;
+		align-items:center;
+	}
+	
+	.calculates .calculate .symbols{
+		height: 90px;
+		width: 80%;
+		display: flex;
+		align-items: center;
+	}
+	
+	.calculates .calculate .symbols .symbol {
+		width: 45px;
+		height: 45px;
+		text-align: center;
+		font-size: 40px;
+		margin: 10px;
+		align-items: center;
+	}

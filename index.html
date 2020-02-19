@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>game</title>
+	</head>
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/index.js"></script>
+	<body>
+		<!-- 玩家一 -->
+		<div class="main" id="first">
+			<div class="picbox">
+				<div class="title">The First Player's Information</div> 
+				<div class="playerTitle">payer name：</div>
+				<div><input name="firstPlayer" maxlength="18"/></div>
+				<div class="playerTitle">Avatar：</div>
+				<div id="first_container">
+				</div>
+				<div class="next_button">
+					<button class="next" onclick="firstPlayerOnclickNext()">Next</button>
+				</div>
+			</div>
+		</div>
+		<!-- 玩家二 -->
+		<div class="main" id="second">
+			<div class="picbox">
+				<div class="title">The Second Player's Information</div> 
+				<div class="playerTitle">payer name：</div>
+				<div><input name="secondPlayer"  maxlength="18"/></div>
+				<div class="playerTitle">Avatar：</div>
+				<div id="second_container">
+				</div>
+				<div class="next_button">
+					<button class="next" onclick="secondPlayerOnclickNext()">Start a game</button>
+				</div>
+			</div>
+		</div>
+		
+		<!-- playing -->
+		<div class="playing" id="playing">
+			<div class="main">
+				<div class="player">
+					<button class="exit" onclick="exitGame('first')">Exit</button>
+					<div class="name" style="text-align: right;" id="firstPlayerName">我是大哥啦</div>
+					<div class="avatar"><img src="img/head/0.jpg" id="firstPlayerAvatar"/></div>
+				</div>
+				<div class="score">
+					<label class="lab" id="first_score">0</label>
+					<label class="flag">:</label>
+					<label class="lab" id="second_score">0</label>
+				</div>
+				<div class="player">
+					<div class="avatar"><img src="img/head/0.jpg" id="secondPlayerAvatar"/></div>
+					<div class="name" id="secondPlayerName">2</div>
+					<button class="exit" onclick="exitGame('second')">Exit</button>
+				</div>
+			</div>
+			<div class="cards">
+				<div class="card">
+					<button class="btn cardnum first" id="first_cardnum_0">1</button>
+					<button class="btn cardnum first" id="first_cardnum_1">2</button>
+					<button class="btn cardnum first" id="first_cardnum_2">3</button>
+				</div>
+				<div class="card"></div>
+				<div class="card">
+					<button class="btn cardnum second" id="second_cardnum_0">8</button>
+					<button class="btn cardnum second" id="second_cardnum_1">5</button>
+					<button class="btn cardnum second" id="second_cardnum_2">7</button>
+				</div>
+			</div>
+			<div class="expressions">
+				<div class="expression" style="width: 42%;">
+					<div class="numbers">
+						<label class="number" id="first_number_1"></label>
+						<label class="number" id="first_number_2"></label>
+						<label class="number" id="first_number_3"></label>
+						<label class="number" id="first_number_4"></label>
+						<label class="number" id="first_number_5"></label>
+					</div>
+					<div class="submit">
+						<button class="btn submit first" onclick="deleteNumber('first')">delete</button>
+						<button class="btn submit first" onclick="submitGame('first')">submit</button>
+					</div>
+				</div>
+				<div class="expression" id="randomNumberCalculate" style="padding-top: 100px; height: 150px; width: 16%;display: inline;border: 2px solid #000;">6</div>
+				<div class="expression" style="width: 42%;">
+					<div class="numbers">
+						<label class="number" id="second_number_1"></label>
+						<label class="number" id="second_number_2"></label>
+						<label class="number" id="second_number_3"></label>
+						<label class="number" id="second_number_4"></label>
+						<label class="number" id="second_number_5"></label>
+					</div>
+					<div class="submit">
+						<button class="btn submit second" onclick="deleteNumber('second')">delete</button>
+						<button class="btn submit second" onclick="submitGame('second')">submit</button>
+					</div>
+				</div>
+			</div>
+			<div class="calculates">
+				<div class="calculate" style="width: 40%;">
+					<div class="symbols">
+						<button class="btn symbol first">+</button>
+						<button class="btn symbol first">-</button>
+						<button class="btn symbol first">x</button>
+						<button class="btn symbol first">÷</button>
+					</div>
+					<div class="submit">
+						<button class="btn submit first" onclick="change('first')" id="firstChange">change</button>
+						<button class="btn submit first" onclick="giveup('first')">give up</button>
+					</div>
+				</div>
+				<div class="calculate" style="width: 20%;"></div>
+				<div class="calculate" style="width: 40%;">
+					<div class="symbols">
+						<button class="btn symbol second">+</button>
+						<button class="btn symbol second">-</button>
+						<button class="btn symbol second">x</button>
+						<button class="btn symbol second">÷</button>
+					</div>
+					<div class="submit">
+						<button class="btn submit second" onclick="change('second')" id="secondChange">change</button>
+						<button class="btn submit second" onclick="giveup('second')">give up</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wingame">
+			<h2 id="wingamemsg">恭喜你完成拼图！</h2>
+			<div class="pic pic2"></div>
+			<button class="continue_submit" onclick="continueGame()">continue</button>
+		</div>
+		<div class="errormsg">
+			<h2 id="errormsg"></h2>
+		</div>
+		<div class="successmsg">
+			<h2 id="successmsg"></h2>
+		</div>
+	</body>
+</html>
