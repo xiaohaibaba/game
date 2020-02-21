@@ -30,23 +30,17 @@ var giveupCount = 0;
 $(document).ready(function(){
 	//初始化游戏
 	initgames(avatarnum);
-	$('#startgame').attr("onclick","startgame()");
-	for (var i = 0; i < 10; i++) {
-		console.log(randomNumber(0,10));
-	}
 	//DIV点击单选效果
 	$(".square_first").click(function(){
 		clear("first");
 		$(this).addClass("bgColor");
 		first_player_avatar = $(this).children().attr("src");
-		console.log(first_player_avatar)
 	});
 	//DIV点击单选效果
 	$(".square_second").click(function(){
 		clear("second");
 		$(this).addClass("bgColor");
 		second_player_avatar = $(this).children().attr("src");
-		console.log(second_player_avatar)
 	});
 	
 	//选择卡片后,就更改颜色,表示不可选,按钮点击功能禁用
@@ -134,29 +128,6 @@ function clear(temp) {
     });
 }
 
-function isWin()//判断是否胜利
-{
-	k=0;
-	for(var i=1;i<picnum-1;i++)
-	  {
-		for(var id=1;id<picnum*picnum;id++)
-		{
-			if(id>picnum*i+1&&id<picnum*(i+1))
-		{
-			var temp=$('#'+id).css("background-image");
-			if(temp==picData[k])
-			{
-				k++;
-			}
-		}
-		}
-	  }
-	  if(k==(picnum-2)*(picnum-2))
-	  {
-	  	clearTimeout(timer);
-	  	windo();
-	  }
-}
 //初始化游戏
 function initgames(avatarnum){
 	//玩家一头像地址
@@ -204,8 +175,49 @@ function createAllRandomNumber(){
 	randomNumberByFirstPlayer(0,10);
 	//生成玩家二的三个随机数
 	randomNumberBySecondPlayer(0,10);
-	//生成一个0-100的随机数
-	randomNumberCalculate(0,100);
+	//随机选取一个玩家,让它的数字随机组合生成一个数字
+	
+	// //生成一个0-100的随机数
+	// randomNumberCalculate(0,100);
+	//随机让一个玩家赢
+	randomPlayerWin();
+}
+//随机让一个玩家赢
+function randomPlayerWin(){
+	//随机获取一个玩家的标,1或2
+	var player = randomNumber(1,3);
+	var playerName = playerNameByIndex(player);
+	//获取玩家三张卡片的数字
+	var resultStr = "";
+	for (var i = 0; i < 3; i++) {
+		//拼接卡片数字first_cardnum_0
+		resultStr += $("#"+playerName+"_cardnum_"+i).html();
+		//拼接一个算术符号
+		resultStr += randomCalculate();
+	}
+	resultStr = resultStr.substr(0, resultStr.length-1)
+	//去掉最后一个算术符号
+	var result = eval(resultStr);
+	//如果计算结果小于0,重新计算
+	if(result<0){
+		randomPlayerWin();
+		return;
+	}
+	console.log(resultStr+"="+result)
+	$("#randomNumberCalculate").html(result);
+}
+//获取一个随机的算数符号,不要除法,避免出现小数
+function randomCalculate(){
+	var randomCalculate = new Array("+","-","*");
+	return randomCalculate[randomNumber(0,3)];
+}
+//通过下标获取玩家名字
+function playerNameByIndex(index){
+	if(index==1){
+		return "first";
+	}else if(index==2){
+		return "second";
+	}
 }
 
 function randomNumberByFirstPlayer(x,y) {
@@ -268,16 +280,17 @@ function randomNumberPlayerChange(param) {
 	}
 }
 
-//生成一个0-100的随机数
-function randomNumberCalculate(x,y){
-	var rand = randomNumber(x,y);
-	//赋值给匹配值
-	random_number_calculate = rand;
-	$("#randomNumberCalculate").html(rand);
-}
-//生成随机数,x上限，y下限  
+//生成一个0-100的随机数,此方法作废
+// function randomNumberCalculate(x,y){
+// 	var rand = randomNumber(x,y);
+// 	//赋值给匹配值
+// 	random_number_calculate = rand;
+// 	$("#randomNumberCalculate").html(rand);
+// }
+
+//生成随机数,x下限，y上限  
 function randomNumber(x,y) {
-    var rand = parseInt(Math.random() * (x - y + 1) + y);
+    var rand = parseInt(Math.random() * (x - y) + y);
     return rand;
 }
 
