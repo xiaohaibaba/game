@@ -134,6 +134,27 @@ function initgames(avatarnum){
 	first_player_avatar = null;
 	//玩家二头像地址
 	second_player_avatar = null;
+	// 玩家一名称
+	first_player_name = "";
+	$("input[name='firstPlayer']").val("");
+	// 玩家二名称
+	second_player_name = "";
+	$("input[name='secondPlayer']").val("");
+	// 玩家一 保存当前局中生成过的随机数(保存已经生成过的随机数,确保change需要重新生成的随机数不再生成已经生成过的随机数)
+	first_random_already = new Array();
+	// 玩家二 保存当前局中生成过的随机数(保存已经生成过的随机数,确保change需要重新生成的随机数不再生成已经生成过的随机数)
+	second_random_already = new Array();
+	// 初始化change按钮的记录次数,只允许change一次
+	first_changeval = 0;
+	second_changeval = 0;
+	// 玩家一表达式计数器,最大为5时,可以进行计算
+	first_expression_number = 1;
+	// 玩家二表达式计数器,最大为5时,可以进行计算
+	second_expression_number = 1;
+	// 重新开始游戏的标记,当为2的时候触发
+	giveupCount = 0;
+	//去除头像勾选样式
+	$(".avatar").removeClass("bgColor");
 	//初始化头像
 	initavatar(avatarnum);
 }
@@ -604,16 +625,29 @@ function resttingPlayer(param){
 	}
 	
 }
-//退出游戏
+
+//询问是否退出游戏
 function exitGame(param){
-	$("#"+param+"_score").html("0")
-	lockBtn(param);
-	resttingPlayer(param);
-	clearNumber(param);
-	if(giveupCount!=0){
-		//重置give up值
-		giveupCount--;
+	if("first".indexOf(param)>=0){
+		showExitGame("Dear "+first_player_name+", do you want to quit the game ?");
+	}else if("second".indexOf(param)>=0){
+		showExitGame("Dear "+second_player_name+", do you want to quit the game ?");
 	}
+}
+//不退出游戏
+function noexitGame(){
+	hiddenExitGame();
+}
+//确定退出游戏
+function defineExitGame(){
+	//初始化游戏,参数为0,表示不需要初始化头像了
+	initgames(0);
+	//隐藏弹窗
+	hiddenExitGame();
+	//隐藏第三个页面
+	hiddenPlaying();
+	//展示第一个页面
+	showFirstPlayer();
 }
 function showWin(msg){
 	$('#wingamemsg').html(msg);
@@ -621,4 +655,12 @@ function showWin(msg){
 }
 function hiddenWin(){
 	$('.wingame').css("display","none");
+}
+
+function showExitGame(msg){
+	$('#exitgamemsg').html(msg);
+	$('.exitgame').css("display","block");
+}
+function hiddenExitGame(){
+	$('.exitgame').css("display","none");
 }

@@ -121,9 +121,59 @@ body
 		text-align: center;/*字体居中*/
 		cursor: pointer;/*设置鼠标箭头手势*/
 		padding: 5px;
-		margin:20px 60px 10px 420px;
+		margin:40px 60px 10px 420px;
 	}
 	.wingame .continue_submit:hover{
+		background:#64baed;
+	}
+	.exitgame {
+		display: none;
+		width: 550px;
+		height: 190px;
+		background-color: #bbbbbb;
+		position: fixed;
+		top:25vh;
+		left: 32vw;
+	}
+	.exitgame h2{
+		text-align: center;
+		height: 70px;
+	}
+	.exitgame .no_play{
+		width: 100px;/*设置按钮宽度*/
+		height: 40px;/*设置按钮高度*/
+		color:white;/*字体颜色*/
+		background-color:cornflowerblue;/*按钮背景颜色*/
+		border-radius: 3px;/*让按钮变得圆滑一点*/
+		border-width: 0;/*消去按钮丑的边框*/
+		outline: none;/*取消轮廓*/
+		font-family: Microsoft soft;/*字体设置为楷体*/
+		font-size: 17px;/*设置字体大小*/
+		text-align: center;/*字体居中*/
+		cursor: pointer;/*设置鼠标箭头手势*/
+		padding: 5px;
+		margin:30px 60px 10px 290px;
+		position: fixed;
+	}
+	.exitgame .no_play:hover{
+		background:#64baed;
+	}
+	.exitgame .yes_play{
+		width: 100px;/*设置按钮宽度*/
+		height: 40px;/*设置按钮高度*/
+		color:white;/*字体颜色*/
+		background-color:cornflowerblue;/*按钮背景颜色*/
+		border-radius: 3px;/*让按钮变得圆滑一点*/
+		border-width: 0;/*消去按钮丑的边框*/
+		outline: none;/*取消轮廓*/
+		font-family: Microsoft soft;/*字体设置为楷体*/
+		font-size: 17px;/*设置字体大小*/
+		text-align: center;/*字体居中*/
+		cursor: pointer;/*设置鼠标箭头手势*/
+		padding: 5px;
+		margin:30px 60px 10px 420px;
+	}
+	.exitgame .yes_play:hover{
 		background:#64baed;
 	}
 	.errormsg {
