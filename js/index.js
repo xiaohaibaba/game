@@ -27,90 +27,123 @@ var first_expression_number = 1;
 var second_expression_number = 1;
 // 重新开始游戏的标记,当为2的时候触发
 var giveupCount = 0;
-$(document).ready(function(){
-	//初始化游戏
-	initgames(avatarnum);
-	//DIV点击单选效果
-	$(".square_first").click(function(){
-		clear("first");
-		$(this).addClass("bgColor");
-		first_player_avatar = $(this).children().attr("src");
-	});
-	//DIV点击单选效果
-	$(".square_second").click(function(){
-		clear("second");
-		$(this).addClass("bgColor");
-		second_player_avatar = $(this).children().attr("src");
-	});
-	
-	//选择卡片后,就更改颜色,表示不可选,按钮点击功能禁用
-	$(".cardnum").click(function(){
-		if($(this).attr("id").indexOf("first")>=0){
-			//防止超出了界限,弹出错误窗口的问题
-			if(parseInt(first_expression_number)<6){
-				// 是奇数才可以选择数字
-				if(parseInt(first_expression_number) % 2 == 0){
-					showerror("Please select operation symbol");
-					return;
-				}
-				if($(this).hasClass("bgColor")){
-					showerror("This number has been used");
-					return;
-				}
-				$(this).addClass("bgColor");
-				//将卡片的数字显示在表达式中
-				$("#first_number_"+first_expression_number).html($(this).html());
-				//把first_expression_number设置进去,用于删除元素的时候,可以恢复卡片的样式
-				$(this).attr("number_date",first_expression_number);
-				first_expression_number++;
-			}
-		}else if($(this).attr("id").indexOf("second")>=0){
-			if(parseInt(second_expression_number)<6){
-				// 是奇数才可以选择数字
-				if(parseInt(second_expression_number) % 2 == 0){
-					showerror("Please select operation symbol");
-					return;
-				}
-				if($(this).hasClass("bgColor")){
-					showerror("This number has been used");
-					return;
-				}
-				$(this).addClass("bgColor");
-				//将卡片的数字显示在表达式中
-				$("#second_number_"+second_expression_number).html($(this).html());
-				//把second_expression_number设置进去,用于删除元素的时候,可以恢复卡片的样式
-				$(this).attr("number_date",second_expression_number);
-				second_expression_number++;
-			}
-		}
-		console.log($(this).html())
+
+Object.extend = function(destination, source) {
+  for (property in source) {
+    destination[property] = source[property];
+  }
+  return destination;
+}
+Object.prototype.extend = function(object) {
+  return Object.extend.apply(this, [this, object]);
+}
+
+function Base(){
+ 
+}
+Base.prototype={
+	initialize:function(){
+		this.oninit(); //调用了一个虚方法
+	},
+	oninit:function(){
+		 //留一个空的方法
+	}
+}
+ 
+function InitGame(){
+
+}
+ 
+InitGame.prototype=(new Base()).extend({
+	oninit:function(){//实现抽象基类中的oninit虚方法
+		//初始化游戏
+		initgames(avatarnum);
+		//DIV点击单选效果
+		$(".square_first").click(function(){
+			clear("first");
+			$(this).addClass("bgColor");
+			first_player_avatar = $(this).children().attr("src");
+		});
+		//DIV点击单选效果
+		$(".square_second").click(function(){
+			clear("second");
+			$(this).addClass("bgColor");
+			second_player_avatar = $(this).children().attr("src");
+		});
 		
-	});
-	$(".symbol").click(function(){
-		if($(this).attr("class").indexOf("first")>=0){
-			if(parseInt(first_expression_number)<6){
-				// 是偶数才可以选择运算符号
-				if(parseInt(first_expression_number) % 2 == 1){
-					showerror("Please select card number");
-					return;
+		//选择卡片后,就更改颜色,表示不可选,按钮点击功能禁用
+		$(".cardnum").click(function(){
+			if($(this).attr("id").indexOf("first")>=0){
+				//防止超出了界限,弹出错误窗口的问题
+				if(parseInt(first_expression_number)<6){
+					// 是奇数才可以选择数字
+					if(parseInt(first_expression_number) % 2 == 0){
+						showerror("Please select operation symbol");
+						return;
+					}
+					if($(this).hasClass("bgColor")){
+						showerror("This number has been used");
+						return;
+					}
+					$(this).addClass("bgColor");
+					//将卡片的数字显示在表达式中
+					$("#first_number_"+first_expression_number).html($(this).html());
+					//把first_expression_number设置进去,用于删除元素的时候,可以恢复卡片的样式
+					$(this).attr("number_date",first_expression_number);
+					first_expression_number++;
 				}
-				//将卡片的数字显示在表达式中
-				$("#first_number_"+first_expression_number).html($(this).html());
-				first_expression_number++;
-			}
-		}else if($(this).attr("class").indexOf("second")>=0){
-			if(parseInt(second_expression_number)<6){
-				// 是偶数才可以选择运算符号
-				if(parseInt(second_expression_number) % 2 == 1){
-					showerror("Please select card number");
-					return;
+			}else if($(this).attr("id").indexOf("second")>=0){
+				if(parseInt(second_expression_number)<6){
+					// 是奇数才可以选择数字
+					if(parseInt(second_expression_number) % 2 == 0){
+						showerror("Please select operation symbol");
+						return;
+					}
+					if($(this).hasClass("bgColor")){
+						showerror("This number has been used");
+						return;
+					}
+					$(this).addClass("bgColor");
+					//将卡片的数字显示在表达式中
+					$("#second_number_"+second_expression_number).html($(this).html());
+					//把second_expression_number设置进去,用于删除元素的时候,可以恢复卡片的样式
+					$(this).attr("number_date",second_expression_number);
+					second_expression_number++;
 				}
-				//将卡片的数字显示在表达式中
-				$("#second_number_"+second_expression_number).html($(this).html());
-				second_expression_number++;
 			}
-		}
-	});
+		});
+		$(".symbol").click(function(){
+			if($(this).attr("class").indexOf("first")>=0){
+				if(parseInt(first_expression_number)<6){
+					// 是偶数才可以选择运算符号
+					if(parseInt(first_expression_number) % 2 == 1){
+						showerror("Please select card number");
+						return;
+					}
+					//将卡片的数字显示在表达式中
+					$("#first_number_"+first_expression_number).html($(this).html());
+					first_expression_number++;
+				}
+			}else if($(this).attr("class").indexOf("second")>=0){
+				if(parseInt(second_expression_number)<6){
+					// 是偶数才可以选择运算符号
+					if(parseInt(second_expression_number) % 2 == 1){
+						showerror("Please select card number");
+						return;
+					}
+					//将卡片的数字显示在表达式中
+					$("#second_number_"+second_expression_number).html($(this).html());
+					second_expression_number++;
+				}
+			}
+		});
+	}
+});
+
+
+$(document).ready(function(){
+	var initGame = new InitGame();
+	initGame.initialize();
 });
 //初始化头像
 function initavatar(avatarnum){
